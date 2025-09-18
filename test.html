@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chat App</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    #chat { height: 400px; overflow-y: auto; border: 1px solid #ccc; margin: 20px; padding: 10px; background: #fff; }
+    .message { margin: 5px 0; padding: 2px 5px; border-radius: 8px; max-width: 70%; }
+    .user { background: #007bff; color: #fff; margin-left: auto; text-align: right; }
+    .ai { background: #e5e5ea; color: #000; margin-right: auto; text-align: left; }
+    #form { display: flex; margin: 20px; }
+    #input { flex: 1; padding: 10px; font-size: 16px; }
+    #send { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">🤖 Gnaneshwar AI Chat App</h2>
+  <div id="chat"></div>
+  <form id="form">
+    <input id="input" autocomplete="off" placeholder="Ask me whatever you want..." />
+
+<button id="send" style="background-color: green; color: white; padding: 8px 16px; border-radius: 6px;">
+  Send
+</button>
+  </form>
+
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script>
+    const socket = io("http://localhost:5000");
+    const form = document.getElementById("form");
+    const input = document.getElementById("input");
+    const chat = document.getElementById("chat");
+
+    // Add message to chat box
+    function addMessage(sender, text) {
+      const div = document.createElement("div");
+      div.classList.add("message", sender);
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight; // auto scroll
+    }
+
+    // When form is submitted
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (input.value) {
+        socket.emit("chat message", input.value);
+        input.value = "";
+      }
+    });
+
+    // Listen for messages
+    socket.on("chat message", (data) => {
+      addMessage(data.sender, data.text);
+    });
+  </script>
+</body>
+</html>
