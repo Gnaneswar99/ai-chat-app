@@ -40,24 +40,32 @@ ai-chat/
 │
 └─ README.md
 
+yaml
+Copy code
+
+---
+
 ## ⚡ Setup Instructions
 
 1. **Clone the repository**
 
-
+```bash
 git clone https://github.com/Gnaneswar99/ai-chat-app.git
 cd ai-chat-app/server
 Install dependencies
 
-
+bash
+Copy code
 npm install
 Create .env file
 
-
+env
+Copy code
 OPENAI_API_KEY=your_openai_api_key_here
 Run the server
 
-
+bash
+Copy code
 npm run dev
 Open the frontend
 
@@ -86,8 +94,23 @@ AI responses are generated using the system’s current date to provide accurate
 
 👨‍💻 Author
 Gnaneswar Markat
-GitHub
+GitHub | Email: gnaneswarm2024@gmail.com
 
+yaml
+Copy code
 
+---
 
+✅ This README includes:  
+- Project overview  
+- Features & tech stack  
+- Folder structure  
+- Setup instructions  
+- Deployment guidance  
+- Usage notes  
 
+---
+
+If you want, I can **also provide a screenshot-ready “live chat demo” section** for the README so it looks very professional on GitHub.  
+
+Do you want me to add that?
